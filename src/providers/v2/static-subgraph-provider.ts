@@ -33,7 +33,6 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.ARBITRUM_GOERLI]: [],
   [ChainId.ARBITRUM_SEPOLIA]: [WRAPPED_NATIVE_CURRENCY[ChainId.ARBITRUM_SEPOLIA]!],
   [ChainId.OPTIMISM_GOERLI]: [],
-  [ChainId.OPTIMISM_SEPOLIA]: [],
   [ChainId.POLYGON]: [],
   [ChainId.POLYGON_MUMBAI]: [],
   [ChainId.CELO]: [],
