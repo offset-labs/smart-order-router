@@ -3,7 +3,7 @@ import {
   ChainId,
   CurrencyAmount as CurrencyAmountRaw,
   Token,
-} from '@uniswap/sdk-core';
+} from '@offsetcarbon/sdk-core';
 import { Pair } from '@uniswap/v2-sdk';
 import { Pool } from '@uniswap/v3-sdk';
 
@@ -22,6 +22,7 @@ import {
   DAI_SEPOLIA,
   USDC_ARBITRUM,
   USDC_ARBITRUM_GOERLI,
+  USDC_ARBITRUM_SEPOLIA,
   USDC_AVAX,
   USDC_BASE,
   USDC_BNB,
@@ -69,6 +70,7 @@ export const usdGasTokensByChain: { [chainId in ChainId]?: Token[] } = {
     USDT_OPTIMISM_GOERLI,
   ],
   [ChainId.ARBITRUM_GOERLI]: [USDC_ARBITRUM_GOERLI],
+  [ChainId.ARBITRUM_SEPOLIA]: [USDC_ARBITRUM_SEPOLIA],
   [ChainId.GOERLI]: [DAI_GOERLI, USDC_GOERLI, USDT_GOERLI, WBTC_GOERLI],
   [ChainId.SEPOLIA]: [USDC_SEPOLIA, DAI_SEPOLIA],
   [ChainId.POLYGON]: [USDC_POLYGON],
@@ -105,8 +107,8 @@ export type BuildOnChainGasModelFactoryType = {
   quoteToken: Token;
   v2poolProvider: IV2PoolProvider;
   l2GasDataProvider?:
-    | IL2GasDataProvider<OptimismGasData>
-    | IL2GasDataProvider<ArbitrumGasData>;
+  | IL2GasDataProvider<OptimismGasData>
+  | IL2GasDataProvider<ArbitrumGasData>;
   providerConfig?: GasModelProviderConfig;
 };
 

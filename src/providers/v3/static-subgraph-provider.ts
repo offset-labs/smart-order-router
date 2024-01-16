@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { ChainId, Token } from '@uniswap/sdk-core';
+import { ChainId, Token } from '@offsetcarbon/sdk-core';
 import { FeeAmount, Pool } from '@uniswap/v3-sdk';
 import JSBI from 'jsbi';
 import _ from 'lodash';
@@ -61,6 +61,7 @@ import {
   WMATIC_POLYGON,
   WMATIC_POLYGON_MUMBAI,
   WXDAI_GNOSIS,
+  USDC_ARBITRUM_SEPOLIA,
 } from '../token-provider';
 
 import { IV3PoolProvider } from './pool-provider';
@@ -113,6 +114,9 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     USDT_OPTIMISM_GOERLI,
     WBTC_OPTIMISM_GOERLI,
   ],
+  [ChainId.OPTIMISM_SEPOLIA]: [
+    WRAPPED_NATIVE_CURRENCY[ChainId.OPTIMISM_SEPOLIA]!
+  ],
   [ChainId.POLYGON]: [USDC_POLYGON, WETH_POLYGON, WMATIC_POLYGON],
   [ChainId.POLYGON_MUMBAI]: [
     DAI_POLYGON_MUMBAI,
@@ -154,6 +158,7 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ],
   [ChainId.BASE_GOERLI]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE_GOERLI]],
   [ChainId.BASE]: [WRAPPED_NATIVE_CURRENCY[ChainId.BASE], USDC_BASE],
+  [ChainId.ARBITRUM_SEPOLIA]: [WRAPPED_NATIVE_CURRENCY[ChainId.ARBITRUM_SEPOLIA], USDC_ARBITRUM_SEPOLIA],
 };
 
 /**
@@ -171,7 +176,7 @@ export class StaticV3SubgraphProvider implements IV3SubgraphProvider {
   constructor(
     private chainId: ChainId,
     private poolProvider: IV3PoolProvider
-  ) {}
+  ) { }
 
   public async getPools(
     tokenIn?: Token,

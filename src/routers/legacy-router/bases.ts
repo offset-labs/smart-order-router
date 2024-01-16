@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { ChainId, Token } from '@uniswap/sdk-core';
+import { ChainId, Token } from '@offsetcarbon/sdk-core';
 
 import {
   BTC_BNB,
@@ -41,9 +41,15 @@ export const BASES_TO_CHECK_TRADES_AGAINST = (
     [ChainId.OPTIMISM_GOERLI]: [
       WRAPPED_NATIVE_CURRENCY[ChainId.OPTIMISM_GOERLI]!,
     ],
+    [ChainId.OPTIMISM_SEPOLIA]: [
+      WRAPPED_NATIVE_CURRENCY[ChainId.OPTIMISM_SEPOLIA]!,
+    ],
     [ChainId.ARBITRUM_ONE]: [WRAPPED_NATIVE_CURRENCY[ChainId.ARBITRUM_ONE]!],
     [ChainId.ARBITRUM_GOERLI]: [
       WRAPPED_NATIVE_CURRENCY[ChainId.ARBITRUM_GOERLI]!,
+    ],
+    [ChainId.ARBITRUM_SEPOLIA]: [
+      WRAPPED_NATIVE_CURRENCY[ChainId.ARBITRUM_SEPOLIA]!,
     ],
     [ChainId.POLYGON]: [WMATIC_POLYGON],
     [ChainId.POLYGON_MUMBAI]: [WMATIC_POLYGON_MUMBAI],

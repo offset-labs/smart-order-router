@@ -11,7 +11,7 @@ import {
   CurrencyAmount,
   Token,
   TradeType,
-} from '@uniswap/sdk-core';
+} from '@offsetcarbon/sdk-core';
 
 import { CacheMode } from './model';
 import { CachedRoutes } from './model/cached-routes';

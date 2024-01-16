@@ -1,5 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { ChainId, Percent, Price, TradeType } from '@uniswap/sdk-core';
+import { ChainId, Percent, Price, TradeType } from '@offsetcarbon/sdk-core';
 import { Pool } from '@uniswap/v3-sdk';
 import _ from 'lodash';
 
@@ -109,7 +109,8 @@ export class V3HeuristicGasModelFactory extends IOnChainGasModelFactory {
         );
       } else if (
         chainId == ChainId.ARBITRUM_ONE ||
-        chainId == ChainId.ARBITRUM_GOERLI
+        chainId == ChainId.ARBITRUM_GOERLI ||
+        chainId == ChainId.ARBITRUM_SEPOLIA
       ) {
         [l1Used, l1FeeInWei] = this.calculateArbitrumToL1SecurityFee(
           route,

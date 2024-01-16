@@ -15,7 +15,7 @@ import {
   Rounding,
   Token,
   TradeType
-} from '@uniswap/sdk-core';
+} from '@offsetcarbon/sdk-core';
 import {
   PERMIT2_ADDRESS,
   UNIVERSAL_ROUTER_ADDRESS as UNIVERSAL_ROUTER_ADDRESS_BY_CHAIN
@@ -1556,7 +1556,7 @@ describe('alpha router integration', () => {
             tradeType == TradeType.EXACT_INPUT
               ? parseAmount('100', tokenIn)
               : parseAmount('100', tokenOut);
-  
+
           const swap = await alphaRouter.route(
             amount,
             getQuoteToken(tokenIn, tokenOut, tradeType),
@@ -1572,17 +1572,17 @@ describe('alpha router integration', () => {
               gasToken: DAI_MAINNET.address
             }
           );
-  
+
           expect(swap).toBeDefined();
           expect(swap).not.toBeNull();
-  
+
           const { quote, quoteGasAdjusted, methodParameters, estimatedGasUsedGasToken } = swap!;
-  
+
           expect(estimatedGasUsedGasToken).toBeDefined();
           expect(estimatedGasUsedGasToken?.currency.equals(DAI_MAINNET)).toBe(true);
-  
+
           await validateSwapRoute(quote, quoteGasAdjusted, tradeType, 100, 10);
-  
+
           await validateExecuteSwap(
             SwapType.UNIVERSAL_ROUTER,
             quote,
@@ -1594,7 +1594,7 @@ describe('alpha router integration', () => {
             100
           );
         });
-  
+
         it('erc20 -> eth gas token as weth', async () => {
           // declaring these to reduce confusion
           const tokenIn = USDC_MAINNET;
@@ -1603,7 +1603,7 @@ describe('alpha router integration', () => {
             tradeType == TradeType.EXACT_INPUT
               ? parseAmount('1000000', tokenIn)
               : parseAmount('10', tokenOut);
-  
+
           const swap = await alphaRouter.route(
             amount,
             getQuoteToken(tokenIn, tokenOut, tradeType),
@@ -1619,17 +1619,17 @@ describe('alpha router integration', () => {
               gasToken: WRAPPED_NATIVE_CURRENCY[1]!.address
             }
           );
-  
+
           expect(swap).toBeDefined();
           expect(swap).not.toBeNull();
-  
+
           const { quote, quoteGasAdjusted, methodParameters, estimatedGasUsedGasToken } = swap!;
-  
+
           expect(estimatedGasUsedGasToken).toBeDefined();
           expect(estimatedGasUsedGasToken?.currency.equals(WRAPPED_NATIVE_CURRENCY[1]!)).toBe(true);
-  
+
           await validateSwapRoute(quote, quoteGasAdjusted, tradeType);
-  
+
           await validateExecuteSwap(
             SwapType.UNIVERSAL_ROUTER,
             quote,
@@ -2516,7 +2516,7 @@ describe('alpha router integration', () => {
               tradeType == TradeType.EXACT_INPUT
                 ? parseAmount('100', tokenIn)
                 : parseAmount('100', tokenOut);
-    
+
             const swap = await alphaRouter.route(
               amount,
               getQuoteToken(tokenIn, tokenOut, tradeType),
@@ -2533,19 +2533,19 @@ describe('alpha router integration', () => {
                 gasToken: DAI_MAINNET.address
               }
             );
-    
+
             expect(swap).toBeDefined();
             expect(swap).not.toBeNull();
-    
+
             const { quote, quoteGasAdjusted, methodParameters, estimatedGasUsedGasToken, simulationStatus } = swap!;
 
             expect(simulationStatus).toBeDefined();
             expect(simulationStatus).toEqual(SimulationStatus.Succeeded);
             expect(estimatedGasUsedGasToken).toBeDefined();
             expect(estimatedGasUsedGasToken?.currency.equals(DAI_MAINNET)).toBe(true);
-    
+
             await validateSwapRoute(quote, quoteGasAdjusted, tradeType, 100, 10);
-    
+
             await validateExecuteSwap(
               SwapType.UNIVERSAL_ROUTER,
               quote,
@@ -2557,7 +2557,7 @@ describe('alpha router integration', () => {
               100
             );
           });
-    
+
           it('erc20 -> eth gas token as weth', async () => {
             // declaring these to reduce confusion
             const tokenIn = USDC_MAINNET;
@@ -2566,7 +2566,7 @@ describe('alpha router integration', () => {
               tradeType == TradeType.EXACT_INPUT
                 ? parseAmount('1000000', tokenIn)
                 : parseAmount('10', tokenOut);
-    
+
             const swap = await alphaRouter.route(
               amount,
               getQuoteToken(tokenIn, tokenOut, tradeType),
@@ -2583,19 +2583,19 @@ describe('alpha router integration', () => {
                 gasToken: WRAPPED_NATIVE_CURRENCY[1]!.address
               }
             );
-    
+
             expect(swap).toBeDefined();
             expect(swap).not.toBeNull();
-    
+
             const { quote, quoteGasAdjusted, methodParameters, estimatedGasUsedGasToken, simulationStatus } = swap!;
 
             expect(simulationStatus).toBeDefined();
             expect(simulationStatus).toEqual(SimulationStatus.Succeeded);
             expect(estimatedGasUsedGasToken).toBeDefined();
             expect(estimatedGasUsedGasToken?.currency.equals(WRAPPED_NATIVE_CURRENCY[1]!)).toBe(true);
-    
+
             await validateSwapRoute(quote, quoteGasAdjusted, tradeType);
-    
+
             await validateExecuteSwap(
               SwapType.UNIVERSAL_ROUTER,
               quote,
@@ -2610,7 +2610,7 @@ describe('alpha router integration', () => {
           GREENLIST_TOKEN_PAIRS.forEach(([tokenIn, tokenOut]) => {
             it(`${tokenIn.symbol} -> ${tokenOut.symbol} with portion`, async () => {
               const originalAmount = (tokenIn.symbol === 'WBTC' && tradeType === TradeType.EXACT_INPUT) ||
-              (tokenOut.symbol === 'WBTC' && tradeType === TradeType.EXACT_OUTPUT)
+                (tokenOut.symbol === 'WBTC' && tradeType === TradeType.EXACT_OUTPUT)
                 ? '1'
                 : '100';
               const amount =
@@ -2693,7 +2693,7 @@ describe('alpha router integration', () => {
               );
 
               // skip checking token in amount for native ETH, since we have no way to know the exact gas cost in terms of ETH token
-              const checkTokenInAmount = tokenIn.isNative ? undefined: parseFloat(amount.toFixed(0))
+              const checkTokenInAmount = tokenIn.isNative ? undefined : parseFloat(amount.toFixed(0))
               // skip checking token out amount for native ETH, since we have no way to know the exact gas cost in terms of ETH token
               const checkTokenOutAmount = tokenOut.isNative ? undefined : parseFloat(amount.toFixed(0))
               const checkPortionAmount = parseFloat(expectedPortionAmount.toFixed(0))
@@ -3248,6 +3248,7 @@ describe('quote for other networks', () => {
     [ChainId.OPTIMISM_GOERLI]: () => USDC_ON(ChainId.OPTIMISM_GOERLI),
     [ChainId.ARBITRUM_ONE]: () => USDC_ON(ChainId.ARBITRUM_ONE),
     [ChainId.ARBITRUM_GOERLI]: () => USDC_ON(ChainId.ARBITRUM_GOERLI),
+    [ChainId.ARBITRUM_SEPOLIA]: () => USDC_ON(ChainId.ARBITRUM_SEPOLIA),
     [ChainId.POLYGON]: () => USDC_ON(ChainId.POLYGON),
     [ChainId.POLYGON_MUMBAI]: () => USDC_ON(ChainId.POLYGON_MUMBAI),
     [ChainId.CELO]: () => CUSD_CELO,
@@ -3267,6 +3268,7 @@ describe('quote for other networks', () => {
     [ChainId.OPTIMISM_GOERLI]: () => DAI_ON(ChainId.OPTIMISM_GOERLI),
     [ChainId.ARBITRUM_ONE]: () => DAI_ON(ChainId.ARBITRUM_ONE),
     [ChainId.ARBITRUM_GOERLI]: () => DAI_ON(ChainId.ARBITRUM_GOERLI),
+    [ChainId.ARBITRUM_SEPOLIA]: () => DAI_ON(ChainId.ARBITRUM_SEPOLIA),
     [ChainId.POLYGON]: () => DAI_ON(ChainId.POLYGON),
     [ChainId.POLYGON_MUMBAI]: () => DAI_ON(ChainId.POLYGON_MUMBAI),
     [ChainId.CELO]: () => CEUR_CELO,
@@ -3286,6 +3288,7 @@ describe('quote for other networks', () => {
       c != ChainId.OPTIMISM_GOERLI &&
       c != ChainId.POLYGON_MUMBAI &&
       c != ChainId.ARBITRUM_GOERLI &&
+      c != ChainId.ARBITRUM_SEPOLIA &&
       // Tests are failing https://github.com/Uniswap/smart-order-router/issues/104
       c != ChainId.CELO_ALFAJORES &&
       c != ChainId.SEPOLIA
@@ -3294,7 +3297,7 @@ describe('quote for other networks', () => {
       const erc1 = TEST_ERC20_1[chain]();
       const erc2 = TEST_ERC20_2[chain]();
 
-      describe(`${ID_TO_NETWORK_NAME(chain)} ${tradeType} 2xx`, function() {
+      describe(`${ID_TO_NETWORK_NAME(chain)} ${tradeType} 2xx`, function () {
         const wrappedNative = WNATIVE_ON(chain);
 
         let alphaRouter: AlphaRouter;
@@ -3361,7 +3364,7 @@ describe('quote for other networks', () => {
           });
         });
 
-        describe(`Swap`, function() {
+        describe(`Swap`, function () {
           it(`${wrappedNative.symbol} -> erc20`, async () => {
             const tokenIn = wrappedNative;
             const tokenOut = erc1;
@@ -3527,7 +3530,7 @@ describe('quote for other networks', () => {
         });
 
         if (isTenderlyEnvironmentSet()) {
-          describe(`Simulate + Swap ${tradeType.toString()}`, function() {
+          describe(`Simulate + Swap ${tradeType.toString()}`, function () {
             // Tenderly does not support Celo
             if ([ChainId.CELO, ChainId.CELO_ALFAJORES].includes(chain)) {
               return;

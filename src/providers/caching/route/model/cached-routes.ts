@@ -1,5 +1,5 @@
 import { Protocol } from '@uniswap/router-sdk';
-import { ChainId, Token, TradeType } from '@uniswap/sdk-core';
+import { ChainId, Token, TradeType } from '@offsetcarbon/sdk-core';
 import _ from 'lodash';
 
 import {
