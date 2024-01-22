@@ -541,7 +541,7 @@ export const WBTC_MOONBEAM = new Token(
 export const USDC_ARBITRUM_SEPOLIA = new Token(
   ChainId.ARBITRUM_SEPOLIA,
   '0x75faf114eafb1BDbe2F0316DF893fd58CE46AA4d',
-  18,
+  6,
   'USDC',
   'USD//C'
 );

@@ -1,13 +1,13 @@
 {
   "name": "@offsetcarbon/smart-order-router",
-  "version": "3.20.1",
+  "version": "3.20.2",
   "description": "Offset Smart Order Router",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/offset-labs/smart-order-router.git"
+    "url": "git+https://github.com/offset-labs/smart-order-router.git"
   },
   "license": "SEE LICENSE IN LICENSE",
   "keywords": [],
@@ -118,5 +118,13 @@
   },
   "oclif": {
     "commands": "./cli/commands"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/offset-labs/smart-order-router/issues"
+  },
+  "homepage": "https://github.com/offset-labs/smart-order-router#readme",
+  "directories": {
+    "test": "test"
+  },
+  "author": "Offset Labs"
 }
