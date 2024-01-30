@@ -1,6 +1,6 @@
-import { Protocol } from '@uniswap/router-sdk';
+import { Protocol } from '@offsetcarbon/router-sdk';
 import { Token } from '@offsetcarbon/sdk-core';
-import { Pool } from '@uniswap/v3-sdk';
+import { Pool } from '@offsetcarbon/v3-sdk';
 
 import { MixedRoute, V2Route, V3Route } from '../../../../routers';
 

@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber';
 import { ChainId, Token } from '@offsetcarbon/sdk-core';
-import { Pair } from '@uniswap/v2-sdk';
+import { Pair } from '@offsetcarbon/v2-sdk';
 import _ from 'lodash';
 
 import { ProviderConfig } from '../../../../providers/provider';

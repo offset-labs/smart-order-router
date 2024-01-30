@@ -1,5 +1,5 @@
 import { CHAIN_TO_ADDRESSES_MAP, ChainId, Token } from '@offsetcarbon/sdk-core';
-import { FACTORY_ADDRESS } from '@uniswap/v3-sdk';
+import { FACTORY_ADDRESS } from '@offsetcarbon/v3-sdk';
 
 import { NETWORKS_WITH_SAME_UNISWAP_ADDRESSES } from './chains';
 
@@ -155,6 +155,13 @@ export const WETH9: {
   ),
   [ChainId.OPTIMISM_GOERLI]: new Token(
     ChainId.OPTIMISM_GOERLI,
+    '0x4200000000000000000000000000000000000006',
+    18,
+    'WETH',
+    'Wrapped Ether'
+  ),
+  [ChainId.OPTIMISM_SEPOLIA]: new Token(
+    ChainId.OPTIMISM_SEPOLIA,
     '0x4200000000000000000000000000000000000006',
     18,
     'WETH',

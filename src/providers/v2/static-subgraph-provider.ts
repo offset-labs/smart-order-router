@@ -1,5 +1,5 @@
 import { ChainId, Token } from '@offsetcarbon/sdk-core';
-import { Pair } from '@uniswap/v2-sdk';
+import { Pair } from '@offsetcarbon/v2-sdk';
 import _ from 'lodash';
 
 import { WRAPPED_NATIVE_CURRENCY } from '../../util/chains';
@@ -29,6 +29,7 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.SEPOLIA]: [WRAPPED_NATIVE_CURRENCY[ChainId.SEPOLIA]!],
   //v2 not deployed on [optimism, arbitrum, polygon, celo, gnosis, moonbeam, bnb, avalanche] and their testnets
   [ChainId.OPTIMISM]: [],
+  [ChainId.OPTIMISM_SEPOLIA]: [],
   [ChainId.ARBITRUM_ONE]: [],
   [ChainId.ARBITRUM_GOERLI]: [],
   [ChainId.ARBITRUM_SEPOLIA]: [WRAPPED_NATIVE_CURRENCY[ChainId.ARBITRUM_SEPOLIA]!],

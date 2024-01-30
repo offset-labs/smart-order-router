@@ -1,6 +1,6 @@
 import { Logger } from '@ethersproject/logger';
 import { flags } from '@oclif/command';
-import { Protocol } from '@uniswap/router-sdk';
+import { Protocol } from '@offsetcarbon/router-sdk';
 import { Currency, Percent, TradeType } from '@offsetcarbon/sdk-core';
 import dotenv from 'dotenv';
 import _ from 'lodash';

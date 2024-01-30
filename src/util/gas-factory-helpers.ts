@@ -1,8 +1,8 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { Protocol } from '@uniswap/router-sdk';
+import { Protocol } from '@offsetcarbon/router-sdk';
 import { ChainId, Token, TradeType } from '@offsetcarbon/sdk-core';
-import { Pair } from '@uniswap/v2-sdk/dist/entities';
-import { FeeAmount, Pool } from '@uniswap/v3-sdk';
+import { Pair } from '@offsetcarbon/v2-sdk/dist/entities';
+import { FeeAmount, Pool } from '@offsetcarbon/v3-sdk';
 import JSBI from 'jsbi';
 import _ from 'lodash';
 

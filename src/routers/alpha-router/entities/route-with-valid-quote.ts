@@ -1,7 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { Protocol } from '@uniswap/router-sdk';
+import { Protocol } from '@offsetcarbon/router-sdk';
 import { Token, TradeType } from '@offsetcarbon/sdk-core';
-import { Pool } from '@uniswap/v3-sdk';
+import { Pool } from '@offsetcarbon/v3-sdk';
 import _ from 'lodash';
 
 import { IV2PoolProvider } from '../../../providers/v2/pool-provider';

@@ -1,5 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { Protocol } from '@uniswap/router-sdk';
+import { Protocol } from '@offsetcarbon/router-sdk';
 import { ChainId, Currency, Token, TradeType } from '@offsetcarbon/sdk-core';
 import _ from 'lodash';
 

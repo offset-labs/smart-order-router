@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber';
 import { ChainId, Percent, Price, TradeType } from '@offsetcarbon/sdk-core';
-import { Pool } from '@uniswap/v3-sdk';
+import { Pool } from '@offsetcarbon/v3-sdk';
 import _ from 'lodash';
 
 import {

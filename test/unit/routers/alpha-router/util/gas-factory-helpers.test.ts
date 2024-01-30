@@ -27,8 +27,8 @@ import {
 import { BigNumber } from 'ethers';
 import { getMockedV2PoolProvider, getMockedV3PoolProvider } from '../gas-models/test-util/mocked-dependencies';
 import { TradeType } from '@offsetcarbon/sdk-core';
-import { Trade } from '@uniswap/router-sdk';
-import { Route } from '@uniswap/v3-sdk';
+import { Trade } from '@offsetcarbon/router-sdk';
+import { Route } from '@offsetcarbon/v3-sdk';
 import { getPools } from '../gas-models/test-util/helpers';
 import { ArbitrumGasData } from '../../../../../src/providers/v3/gas-data-provider';
 

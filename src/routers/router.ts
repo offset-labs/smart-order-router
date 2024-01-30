@@ -4,7 +4,7 @@ import {
   MixedRouteSDK,
   Protocol,
   Trade,
-} from '@uniswap/router-sdk';
+} from '@offsetcarbon/router-sdk';
 import {
   Currency,
   Fraction,
@@ -12,14 +12,14 @@ import {
   Token,
   TradeType,
 } from '@offsetcarbon/sdk-core';
-import { SwapOptions as UniversalRouterSwapOptions } from '@uniswap/universal-router-sdk';
-import { Route as V2RouteRaw } from '@uniswap/v2-sdk';
+import { SwapOptions as UniversalRouterSwapOptions } from '@offsetcarbon/universal-router-sdk';
+import { Route as V2RouteRaw } from '@offsetcarbon/v2-sdk';
 import {
   Pool,
   Position,
   MethodParameters as SDKMethodParameters,
   Route as V3RouteRaw,
-} from '@uniswap/v3-sdk';
+} from '@offsetcarbon/v3-sdk';
 
 import { SimulationStatus } from '../providers';
 import { CurrencyAmount } from '../util/amounts';

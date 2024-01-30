@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { ChainId, Token } from '@offsetcarbon/sdk-core';
-import { FeeAmount, Pool } from '@uniswap/v3-sdk';
+import { FeeAmount, Pool } from '@offsetcarbon/v3-sdk';
 import JSBI from 'jsbi';
 import _ from 'lodash';
 
@@ -95,6 +95,7 @@ const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     WBTC_OPTIMISM,
     OP_OPTIMISM,
   ],
+  [ChainId.OPTIMISM_SEPOLIA]: [WRAPPED_NATIVE_CURRENCY[ChainId.OPTIMISM_SEPOLIA]!],
   [ChainId.ARBITRUM_ONE]: [
     WRAPPED_NATIVE_CURRENCY[ChainId.ARBITRUM_ONE]!,
     WBTC_ARBITRUM,

@@ -1,6 +1,6 @@
-import { Protocol } from '@uniswap/router-sdk';
+import { Protocol } from '@offsetcarbon/router-sdk';
 import { ChainId, Token, TradeType } from '@offsetcarbon/sdk-core';
-import { FeeAmount } from '@uniswap/v3-sdk';
+import { FeeAmount } from '@offsetcarbon/v3-sdk';
 import _ from 'lodash';
 
 import {
