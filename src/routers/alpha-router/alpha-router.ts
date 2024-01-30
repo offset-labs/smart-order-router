@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber';
 import { BaseProvider, JsonRpcProvider } from '@ethersproject/providers';
-import DEFAULT_TOKEN_LIST from '@uniswap/default-token-list';
+import DEFAULT_TOKEN_LIST from '@offsetcarbon/default-token-list';
 import { Protocol, SwapRouter, Trade, ZERO } from '@offsetcarbon/router-sdk';
 import {
   ChainId,

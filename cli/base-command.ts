@@ -3,7 +3,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { JsonRpcProvider } from '@ethersproject/providers';
 import { Command, flags } from '@oclif/command';
 import { ParserOutput } from '@oclif/parser/lib/parse';
-import DEFAULT_TOKEN_LIST from '@uniswap/default-token-list';
+import DEFAULT_TOKEN_LIST from '@offsetcarbon/default-token-list';
 import { ChainId, Currency, CurrencyAmount, Token } from '@offsetcarbon/sdk-core';
 import { MethodParameters } from '@offsetcarbon/v3-sdk';
 import bunyan, { default as Logger } from 'bunyan';

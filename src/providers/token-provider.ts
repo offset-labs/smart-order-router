@@ -785,6 +785,8 @@ export const USDC_ON = (chainId: ChainId): Token => {
       return USDC_ARBITRUM;
     case ChainId.ARBITRUM_GOERLI:
       return USDC_ARBITRUM_GOERLI;
+    case ChainId.ARBITRUM_SEPOLIA:
+      return USDC_ARBITRUM_SEPOLIA;
     case ChainId.POLYGON:
       return USDC_POLYGON;
     case ChainId.POLYGON_MUMBAI:

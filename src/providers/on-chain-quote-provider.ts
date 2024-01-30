@@ -717,7 +717,8 @@ export class OnChainQuoteProvider implements IOnChainQuoteProvider {
           // case and return 0 quotes found.
           if (
             (this.chainId == ChainId.ARBITRUM_ONE ||
-              this.chainId == ChainId.ARBITRUM_GOERLI) &&
+              this.chainId == ChainId.ARBITRUM_GOERLI ||
+              this.chainId == ChainId.ARBITRUM_SEPOLIA) &&
             _.every(
               failedQuoteStates,
               (failedQuoteState) =>
