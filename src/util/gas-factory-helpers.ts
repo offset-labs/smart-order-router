@@ -1,8 +1,8 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { Protocol } from '@uniswap/router-sdk';
-import { Currency, CurrencyAmount, Token, TradeType } from '@uniswap/sdk-core';
-import { Pair } from '@uniswap/v2-sdk/dist/entities';
-import { FeeAmount, Pool } from '@uniswap/v3-sdk';
+import { Protocol } from '@offsetcarbon/router-sdk';
+import { Currency, CurrencyAmount, Token, TradeType } from '@offsetcarbon/sdk-core';
+import { Pair } from '@offsetcarbon/v2-sdk/dist/entities';
+import { FeeAmount, Pool } from '@offsetcarbon/v3-sdk';
 import _ from 'lodash';
 
 import { IV2PoolProvider } from '../providers';
@@ -259,25 +259,12 @@ export async function calculateGasUsed(
   let l2toL1FeeInWei = BigNumber.from(0);
   if (
     [
-      ChainId.ARBITRUM_ONE,
-      ChainId.ARBITRUM_RINKEBY,
-      ChainId.ARBITRUM_GOERLI,
+      ChainId.ARBITRUM_SEPOLIA,
     ].includes(chainId)
   ) {
     l2toL1FeeInWei = calculateArbitrumToL1FeeFromCalldata(
       route.methodParameters!.calldata,
       l2GasData as ArbitrumGasData
-    )[1];
-  } else if (
-    [
-      ChainId.OPTIMISM,
-      ChainId.OPTIMISTIC_KOVAN,
-      ChainId.OPTIMISM_GOERLI,
-    ].includes(chainId)
-  ) {
-    l2toL1FeeInWei = calculateOptimismToL1FeeFromCalldata(
-      route.methodParameters!.calldata,
-      l2GasData as OptimismGasData
     )[1];
   }
 
@@ -446,10 +433,10 @@ export function initSwapRouteFromExisting(
     blockNumber: BigNumber.from(swapRoute.blockNumber),
     methodParameters: swapRoute.methodParameters
       ? ({
-          calldata: swapRoute.methodParameters.calldata,
-          value: swapRoute.methodParameters.value,
-          to: swapRoute.methodParameters.to,
-        } as MethodParameters)
+        calldata: swapRoute.methodParameters.calldata,
+        value: swapRoute.methodParameters.value,
+        to: swapRoute.methodParameters.to,
+      } as MethodParameters)
       : undefined,
     simulationStatus: swapRoute.simulationStatus,
   };

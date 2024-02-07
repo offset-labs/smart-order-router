@@ -1,4 +1,4 @@
-import { Fraction } from '@uniswap/sdk-core';
+import { Fraction } from '@offsetcarbon/sdk-core';
 
 import { CurrencyAmount } from '../../../util/amounts';
 

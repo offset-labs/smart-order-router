@@ -1,4 +1,4 @@
-import { Currency, Token, TradeType } from '@uniswap/sdk-core';
+import { Currency, Token, TradeType } from '@offsetcarbon/sdk-core';
 import _ from 'lodash';
 
 import {

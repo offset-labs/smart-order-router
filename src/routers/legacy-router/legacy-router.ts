@@ -1,16 +1,16 @@
 import { BigNumber } from '@ethersproject/bignumber';
 import { Logger } from '@ethersproject/logger';
-import { SwapRouter, Trade } from '@uniswap/router-sdk';
-import { Currency, Token, TradeType } from '@uniswap/sdk-core';
-import { FeeAmount, MethodParameters, Pool, Route } from '@uniswap/v3-sdk';
+import { SwapRouter, Trade } from '@offsetcarbon/router-sdk';
+import { Currency, Token, TradeType } from '@offsetcarbon/sdk-core';
+import { FeeAmount, MethodParameters, Pool, Route } from '@offsetcarbon/v3-sdk';
 import _ from 'lodash';
 
 import { IOnChainQuoteProvider, RouteWithQuotes } from '../../providers';
 import { IMulticallProvider } from '../../providers/multicall-provider';
 import {
-  DAI_MAINNET,
+  DAI_ARBITRUM_SEPOLIA,
   ITokenProvider,
-  USDC_MAINNET,
+  USDC_ARBITRUM_SEPOLIA,
 } from '../../providers/token-provider';
 import { IV3PoolProvider } from '../../providers/v3/pool-provider';
 import { SWAP_ROUTER_02_ADDRESSES } from '../../util';
@@ -132,7 +132,7 @@ export class LegacyRouter {
         1
       ),
       estimatedGasUsedUSD: CurrencyAmount.fromFractionalAmount(
-        DAI_MAINNET!,
+        DAI_ARBITRUM_SEPOLIA!,
         0,
         1
       ),
@@ -140,9 +140,9 @@ export class LegacyRouter {
       trade,
       methodParameters: swapConfig
         ? {
-            ...this.buildMethodParameters(trade, swapConfig),
-            to: SWAP_ROUTER_02_ADDRESSES(this.chainId),
-          }
+          ...this.buildMethodParameters(trade, swapConfig),
+          to: SWAP_ROUTER_02_ADDRESSES(this.chainId),
+        }
         : undefined,
       blockNumber: BigNumber.from(0),
     };
@@ -187,7 +187,7 @@ export class LegacyRouter {
         1
       ),
       estimatedGasUsedUSD: CurrencyAmount.fromFractionalAmount(
-        DAI_MAINNET,
+        DAI_ARBITRUM_SEPOLIA,
         0,
         1
       ),
@@ -195,9 +195,9 @@ export class LegacyRouter {
       trade,
       methodParameters: swapConfig
         ? {
-            ...this.buildMethodParameters(trade, swapConfig),
-            to: SWAP_ROUTER_02_ADDRESSES(this.chainId),
-          }
+          ...this.buildMethodParameters(trade, swapConfig),
+          to: SWAP_ROUTER_02_ADDRESSES(this.chainId),
+        }
         : undefined,
       blockNumber: BigNumber.from(0),
     };
@@ -266,8 +266,7 @@ export class LegacyRouter {
     routeType: TradeType
   ): Promise<V3RouteWithValidQuote | null> {
     log.debug(
-      `Got ${
-        _.filter(quotesRaw, ([_, quotes]) => !!quotes[0]).length
+      `Got ${_.filter(quotesRaw, ([_, quotes]) => !!quotes[0]).length
       } valid quotes from ${routes.length} possible routes.`
     );
 
@@ -310,7 +309,7 @@ export class LegacyRouter {
         gasModel: {
           estimateGasCost: () => ({
             gasCostInToken: CurrencyAmount.fromRawAmount(quoteToken, 0),
-            gasCostInUSD: CurrencyAmount.fromRawAmount(USDC_MAINNET, 0),
+            gasCostInUSD: CurrencyAmount.fromRawAmount(USDC_ARBITRUM_SEPOLIA, 0),
             gasEstimate: BigNumber.from(0),
           }),
         },
@@ -374,11 +373,11 @@ export class LegacyRouter {
       BASES_TO_CHECK_TRADES_AGAINST(this.tokenProvider)[this.chainId] ?? [];
     const additionalA =
       (await ADDITIONAL_BASES(this.tokenProvider))[this.chainId]?.[
-        tokenIn.address
+      tokenIn.address
       ] ?? [];
     const additionalB =
       (await ADDITIONAL_BASES(this.tokenProvider))[this.chainId]?.[
-        tokenOut.address
+      tokenOut.address
       ] ?? [];
     const bases = [...common, ...additionalA, ...additionalB];
 

@@ -1,5 +1,5 @@
-import { Protocol } from '@uniswap/router-sdk';
-import { Token, TradeType } from '@uniswap/sdk-core';
+import { Protocol } from '@offsetcarbon/router-sdk';
+import { Token, TradeType } from '@offsetcarbon/sdk-core';
 import _ from 'lodash';
 
 import { MixedRoute, RouteWithValidQuote, V2Route, V3Route } from '../../../../routers';

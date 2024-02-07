@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { Percent, Price, TradeType } from '@uniswap/sdk-core';
-import { Pool } from '@uniswap/v3-sdk';
+import { Percent, Price, TradeType } from '@offsetcarbon/sdk-core';
+import { Pool } from '@offsetcarbon/v3-sdk';
 import _ from 'lodash';
 
 import {
@@ -10,7 +10,6 @@ import {
 } from '../../../..';
 import {
   ArbitrumGasData,
-  OptimismGasData,
 } from '../../../../providers/v3/gas-data-provider';
 import { ChainId } from '../../../../util';
 import { CurrencyAmount } from '../../../../util/amounts';
@@ -96,19 +95,7 @@ export class V3HeuristicGasModelFactory extends IOnChainGasModelFactory {
       let l1Used = BigNumber.from(0);
       let l1FeeInWei = BigNumber.from(0);
       if (
-        chainId == ChainId.OPTIMISM ||
-        chainId == ChainId.OPTIMISTIC_KOVAN ||
-        chainId == ChainId.OPTIMISM_GOERLI
-      ) {
-        [l1Used, l1FeeInWei] = this.calculateOptimismToL1SecurityFee(
-          route,
-          swapOptions,
-          l2GasData as OptimismGasData
-        );
-      } else if (
-        chainId == ChainId.ARBITRUM_ONE ||
-        chainId == ChainId.ARBITRUM_RINKEBY ||
-        chainId == ChainId.ARBITRUM_GOERLI
+        chainId == ChainId.ARBITRUM_SEPOLIA
       ) {
         [l1Used, l1FeeInWei] = this.calculateArbitrumToL1SecurityFee(
           route,
@@ -268,7 +255,7 @@ export class V3HeuristicGasModelFactory extends IOnChainGasModelFactory {
           `Unable to find ${nativeCurrency.symbol} pool with the quote token, ${quoteToken.symbol} to produce gas adjusted costs. Using amountToken to calculate gas costs.`
         );
       }
-      
+
       // Highest liquidity pool for the non quote token / ETH
       // A pool with the non quote token / ETH should not be required and errors should be handled separately
       if (nativeAmountPool) {
@@ -279,7 +266,7 @@ export class V3HeuristicGasModelFactory extends IOnChainGasModelFactory {
           routeWithValidQuote.amount.quotient,
           routeWithValidQuote.quote.quotient
         );
-        
+
         const inputIsToken0 =
           nativeAmountPool.token0.address == nativeCurrency.address;
         // ratio of input / native
@@ -412,44 +399,6 @@ export class V3HeuristicGasModelFactory extends IOnChainGasModelFactory {
     };
   }
 
-  /**
-   * To avoid having a call to optimism's L1 security fee contract for every route and amount combination,
-   * we replicate the gas cost accounting here.
-   */
-  private calculateOptimismToL1SecurityFee(
-    routes: V3RouteWithValidQuote[],
-    swapConfig: SwapOptionsUniversalRouter,
-    gasData: OptimismGasData
-  ): [BigNumber, BigNumber] {
-    const { l1BaseFee, scalar, decimals, overhead } = gasData;
-
-    const route: V3RouteWithValidQuote = routes[0]!;
-    const amountToken =
-      route.tradeType == TradeType.EXACT_INPUT
-        ? route.amount.currency
-        : route.quote.currency;
-    const outputToken =
-      route.tradeType == TradeType.EXACT_INPUT
-        ? route.quote.currency
-        : route.amount.currency;
-
-    // build trade for swap calldata
-    const trade = buildTrade(amountToken, outputToken, route.tradeType, routes);
-    const data = buildSwapMethodParameters(
-      trade,
-      swapConfig,
-      ChainId.OPTIMISM
-    ).calldata;
-    const l1GasUsed = getL2ToL1GasUsed(data, overhead);
-    // l1BaseFee is L1 Gas Price on etherscan
-    const l1Fee = l1GasUsed.mul(l1BaseFee);
-    const unscaled = l1Fee.mul(scalar);
-    // scaled = unscaled / (10 ** decimals)
-    const scaledConversion = BigNumber.from(10).pow(decimals);
-    const scaled = unscaled.div(scaledConversion);
-    return [l1GasUsed, scaled];
-  }
-
   private calculateArbitrumToL1SecurityFee(
     routes: V3RouteWithValidQuote[],
     swapConfig: SwapOptionsUniversalRouter,
@@ -473,7 +422,7 @@ export class V3HeuristicGasModelFactory extends IOnChainGasModelFactory {
     const data = buildSwapMethodParameters(
       trade,
       swapConfig,
-      ChainId.ARBITRUM_ONE
+      ChainId.ARBITRUM_SEPOLIA
     ).calldata;
     // calculates gas amounts based on bytes of calldata, use 0 as overhead.
     const l1GasUsed = getL2ToL1GasUsed(data, BigNumber.from(0));

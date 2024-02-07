@@ -3,7 +3,7 @@ import { JsonRpcProvider } from '@ethersproject/providers';
 import {
   PERMIT2_ADDRESS,
   UNIVERSAL_ROUTER_ADDRESS,
-} from '@uniswap/universal-router-sdk';
+} from '@offsetcarbon/universal-router-sdk';
 import axios from 'axios';
 import { BigNumber } from 'ethers/lib/ethers';
 
@@ -164,11 +164,6 @@ export class TenderlySimulator extends Simulator {
     const currencyIn = swapRoute.trade.inputAmount.currency;
     const tokenIn = currencyIn.wrapped;
     const chainId = this.chainId;
-    if ([ChainId.CELO, ChainId.CELO_ALFAJORES].includes(chainId)) {
-      const msg = 'Celo not supported by Tenderly!';
-      log.info(msg);
-      return { ...swapRoute, simulationStatus: SimulationStatus.NotSupported };
-    }
 
     if (!swapRoute.methodParameters) {
       const msg = 'No calldata provided to simulate transaction';
@@ -240,7 +235,7 @@ export class TenderlySimulator extends Simulator {
         from: fromAddress,
         // TODO: This is a Temporary fix given by Tenderly team, remove once resolved on their end.
         block_number:
-          chainId == ChainId.ARBITRUM_ONE && blockNumber
+          chainId == ChainId.ARBITRUM_SEPOLIA && blockNumber
             ? blockNumber - 5
             : undefined,
       };
@@ -322,7 +317,7 @@ export class TenderlySimulator extends Simulator {
         from: fromAddress,
         // TODO: This is a Temporary fix given by Tenderly team, remove once resolved on their end.
         block_number:
-          chainId == ChainId.ARBITRUM_ONE && blockNumber
+          chainId == ChainId.ARBITRUM_SEPOLIA && blockNumber
             ? blockNumber - 5
             : undefined,
       };
