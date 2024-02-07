@@ -9,7 +9,7 @@ export const V3_CORE_FACTORY_ADDRESSES: AddressMap = {
 };
 
 export const QUOTER_V2_ADDRESSES: AddressMap = {
-  ...constructSameAddressMap('0x61fFE014bA17989E743c5F6cB21bF9697530B21e'),
+  ...constructSameAddressMap('0xd1d33a24A65e4e5491b27366b5d07C82516C6cA5'),
   [ChainId.ARBITRUM_SEPOLIA]: "0xd1d33a24A65e4e5491b27366b5d07C82516C6cA5"
 };
 
@@ -18,8 +18,8 @@ export const MIXED_ROUTE_QUOTER_V1_ADDRESSES: AddressMap = {
 };
 
 export const UNISWAP_MULTICALL_ADDRESSES: AddressMap = {
-  ...constructSameAddressMap('0x1F98415757620B543A52E61c46B32eB19261F984'),
-  [ChainId.ARBITRUM_SEPOLIA]: ""
+  ...constructSameAddressMap('0x489BAE4A510c337908e400ea35EAfebe7A255F94'),
+  [ChainId.ARBITRUM_SEPOLIA]: "0x489BAE4A510c337908e400ea35EAfebe7A255F94"
 };
 
 export const SWAP_ROUTER_02_ADDRESSES = (_chainId: number) => {
